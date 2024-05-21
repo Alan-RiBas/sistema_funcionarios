@@ -7,10 +7,10 @@
     <div class="d-flex justify-content-between align-items-center">
         <div class="p">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createDepartment">
-                Cadastrar Departamento
+                Novo departamento
             </button>
             <div class="modal fade" id="createDepartment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                @livewire('create-employee')
+                @livewire('create-department')
             </div>
             @if(session()->has('message'))
                 <div class="alert alert-success mt-4 mr-4 col-12" role="alert">
@@ -34,19 +34,12 @@
             </thead>
             <tbody>
                 @foreach($departments as $department)
-                    <tr>
+                    <tr class="dropdown">
                         <th class="col-4">{{ $department->id }}</th>
                         <td class="col-4">{{ $department->name }}</td>
                         <td class="col-4">
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#listEmployees" wire:click="selectDepartment({{ $department->id }})"><i class="bi bi-eye"></i></button>
-                            <div class="modal fade" id="listEmployees" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                @livewire('department-employees', ['departmentId' => $department->id])
-                            </div>
-                            {{-- <button wire:click="select" class="btn btn-secondary dropdown-toggle"type=" button" data-bs-toggle="dropdown" aria-expanded="false" >Listar</i></button>
-                            @isset($selectedDepartmentId)
-                                <h1>$selectedDepartmentId</h1>
-                               @livewire('department-employees', ['departmentId' => $selectedDepartmentId])
-                            @endisset --}}
+                            <button class="btn btn-primary dropdown-toggle" wire:click="selectDepartment({{ $department->id }})" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-eye"></i></button>
+                            @livewire('department-employees', ['departmentId' => $department->id])
                         </td>
                     </tr>
                 @endforeach

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Livewire\Department;
 use App\Livewire\Employees;
+use App\Livewire\EmployeeWorkReport;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,5 @@ Route::middleware(Authenticate::class)->group(function () {
     Route::get('/funcionarios', [Employees::class, 'render'])->name('employees');
     Route::get('/departamentos', [Department::class, 'render'])->name('departments');
     Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/relatorio-funcionarios', EmployeeWorkReport::class)->name('report_employees');
 });

@@ -41,7 +41,13 @@
                             <th class="col-3">{{ $employee->name }}</th>
                             <td class="col-1">{{ $employee->age }}</td>
                             <td class="col-3">{{ $employee->cpf }}</td>
-                            <td class="col-2">{{ $employee->department }}</td>
+                            <td class="col-2">
+                                @if ($employee->department)
+                                    {{ $employee->department->name }}
+                                @else
+                                    Nenhum departamento associado
+                                @endif
+                            </td>
                             <td class="col-3">{{ $employee->email }}</td>
                         </tr>
                     @endforeach

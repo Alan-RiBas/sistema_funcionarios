@@ -14,7 +14,7 @@ class CreateWorkSchedule extends Command
      *
      * @var string
      */
-    protected $signature = 'work-schedule:create {employee_id}';
+    protected $signature = 'work-schedule:create {employee_id?}';
 
     /**
      * The console command description.
@@ -28,16 +28,28 @@ class CreateWorkSchedule extends Command
      */
     public function handle()
     {
-        $employee = Employee::find($this->argument('employee_id'));
-
-        if (!$employee) {
-            $this->error('Employee not found.');
-            return;
-        }
-
+        
+        $employeeId = $this->argument('employee_id');
         $startDate = Carbon::now();
-        WorkSchedule::createWorkSchedule($employee, $startDate);
 
-        $this->info('Work schedule created successfully.');
+        if ($employeeId) {
+            $employee = Employee::find($employeeId);
+
+            if (!$employee) {
+                $this->error('Employee not found.');
+                return;
+            }
+
+            WorkSchedule::createWorkSchedule($employee, $startDate);
+            $this->info('Work schedule created successfully for employee ID: ' . $employeeId);
+        } else {
+            $employees = Employee::all();
+
+            foreach ($employees as $employee) {
+                WorkSchedule::createWorkSchedule($employee, $startDate);
+            }
+
+            $this->info('Work schedules created successfully for all employees.');
+        }
     }
 }

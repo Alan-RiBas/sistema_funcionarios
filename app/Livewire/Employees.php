@@ -14,7 +14,7 @@ class Employees extends Component
     public function render()
     {
 
-        $listEmployees = Employee::paginate(10);
+        $listEmployees = Employee::with('department')->paginate(10);
 
         return view('livewire.employees.index',[
             'employees' => $listEmployees

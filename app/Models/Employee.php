@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Employee extends Model
 {
@@ -12,14 +13,9 @@ class Employee extends Model
 
     protected $fillable = ['name', 'email', 'cpf', 'age', 'department_id'];
 
-    protected $casts = [
-        'age' => 'integer',
-        'department' => 'array'
-    ];
-
-    public function departments()
+    public function department(): BelongsTo
     {
-        return $this->belongsToMany(Department::class);
+        return $this->belongsTo(Department::class);
     }
 
     public function createWorkSchedule(Carbon $startDate, $days)
@@ -37,6 +33,21 @@ class Employee extends Model
                 ]);
             }
         }
+
+        
+    }
+    
+    public function getTotalWorkHours()
+    {
+        $totalMinutes = 0;
+
+        foreach ($this->workSchedules as $schedule) {
+            $start = Carbon::parse($schedule->work_date . ' ' . $schedule->start_time);
+            $end = Carbon::parse($schedule->work_date . ' ' . $schedule->end_time);
+            $totalMinutes += $end->diffInMinutes($start);
+        }
+
+        return round($totalMinutes / 60, 2); // Retorna o total de horas com duas casas decimais
     }
 
 
