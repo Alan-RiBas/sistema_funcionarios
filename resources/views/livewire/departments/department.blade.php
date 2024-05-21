@@ -2,8 +2,6 @@
 @section('content')
 
     <h1 class="text-primary">Departamentos</h1>
-    <h5>Pesquisar departamentos</h5>
-    @livewire('search-users')
     <div class="d-flex justify-content-between align-items-center">
         <div class="p">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createDepartment">
