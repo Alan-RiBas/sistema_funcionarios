@@ -1,9 +1,9 @@
 <div>
     <div class="content-fluid">
         <div class="row mb-3">
-            <div class="col-11">
+            <div class="col-11 d-flex">
                 <input wire:model.live="search" type="text" class="form-control"/>
-                <i class="bi bi-search"></i>
+                <button class="col-1 btn btn-primary"><i class="bi bi-search "></i></button>
             </div>
         </div>
 
