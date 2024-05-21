@@ -32,13 +32,19 @@ class CreateEmployee extends Component
             'department_id' => 'required|exists:departments,id',
             'email' => 'required|email|max:255|unique:employees,email',
         ]);
-        Employee::create([
-            'name' => $this->name,
-            'age' => $this->age,
-            'cpf' => $this->cpf,
-            'department_id' => $this->department_id,
-            'email' => $this->email,
-        ]);
+        try{
+            Employee::create([
+                'name' => $this->name,
+                'age' => $this->age,
+                'cpf' => $this->cpf,
+                'department_id' => $this->department_id,
+                'email' => $this->email,
+            ]);
+
+        }catch(\Exception $e){
+            session()->flash('message', 'Erro ao cadastrar funcionario.');
+            report($e);
+        }
 
         // Reset form fields
         $this->reset(['name', 'age', 'cpf', 'department_id', 'email']);
@@ -50,6 +56,6 @@ class CreateEmployee extends Component
 
     public function render()
     {
-        return view('livewire.create-employee');
+        return view('livewire.employees.create-employee');
     }
 }

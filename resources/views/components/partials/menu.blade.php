@@ -9,6 +9,7 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="{{route('home')}}" class="nav-link px-2 link-secondary">Início</a></li>
         <li><a href="{{route('employees')}}" class="nav-link px-2">Funcionários</a></li>
+        <li><a href="{{route('departments')}}" class="nav-link px-2">Departamentos</a></li>
       </ul>
 
       <div class="col-md-3 text-end">

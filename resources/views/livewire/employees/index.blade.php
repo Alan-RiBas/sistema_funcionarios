@@ -3,6 +3,7 @@
 @section('content')
 
     <h1 class="text-primary">Funcionários</h1>
+    <h5>Pequisar funcionários:</h5>
     @livewire('search-users')
     <div class="d-flex justify-content-between align-items-center">
         <div class="p">
