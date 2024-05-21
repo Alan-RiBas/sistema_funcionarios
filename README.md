@@ -26,3 +26,33 @@ Informações gerais do teste:
 - Não precisa se preocupar com front, pode usar algo cru.
 - Use apenas PHP, HTML, CSS e JS.
 - Sinta-se a vontade de usar qualquer framework PHP
+
+
+# Iniciando o Projeto
+
+### Instalando pacotes
+```
+composer install
+npm install
+npm run build
+```
+
+### Gerando as Migrações
+```
+php artisan migrate
+```
+
+### Populando o DB
+```
+php artisan migrate --seed
+```
+
+### Gerando carga horária para funcionários
+```
+php artisan work-schedule:create
+```
+ou criar para o funcionário com ID específico
+
+```
+php artisan work-schedule:create {employee_id}
+```
