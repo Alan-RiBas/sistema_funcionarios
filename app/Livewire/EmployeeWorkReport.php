@@ -9,13 +9,10 @@ class EmployeeWorkReport extends Component
 {
     public $employees;
 
-    public function mount()
-    {
-        $this->employees = Employee::with('department', 'workSchedules')->get();
-    }
-
+    
     public function render()
     {
+        $this->employees = Employee::with('department', 'workSchedules')->get();
         return view('livewire.employee-work-report', [
             'employees' => $this->employees,
         ]);

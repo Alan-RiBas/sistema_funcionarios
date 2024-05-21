@@ -17,5 +17,5 @@ Route::middleware(Authenticate::class)->group(function () {
     Route::get('/funcionarios', [Employees::class, 'render'])->name('employees');
     Route::get('/departamentos', [Department::class, 'render'])->name('departments');
     Route::delete('/logout', [LoginController::class, 'logout'])->name('logout');
-    Route::get('/relatorio-funcionarios', EmployeeWorkReport::class)->name('report_employees');
+    Route::get('/relatorio-funcionarios', [EmployeeWorkReport::class, 'render'])->name('report_employees');
 });
